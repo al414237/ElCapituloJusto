@@ -29,6 +29,10 @@
     <string name="game_correct_answer">¡La viñeta es del capitulo %1$d!</string>
     <string name="game_guess_answer">¡Intenta adivinar el capítulo justo!</string>
     <string name="game_vinyeta">Viñeta %1$d/%2$d</string>
+    <string name="game_guess_text">¿Qué capítulo es?</string>
+    <string name="game_checkbutton_guess">COMPROBAR</string>
+    <string name="game_checkbutton_next">SIGUIENTE</string>
+
 
 
     <!--    EndActivity  -->

@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -30,6 +32,8 @@ class GameActivity : AppCompatActivity(), GameView {
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("DEBUG:GameActivity", "New GameActivity created")
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_game)
 
@@ -131,14 +135,17 @@ class GameActivity : AppCompatActivity(), GameView {
     }
 
     fun onNextPressed(view: View){
+        val checkButton = findViewById<Button>(R.id.checkButton)
         val result = viewModel.onNext(getChapters())
-        if (result != null){ //
+        if (result != null){
+            checkButton.text = getString(R.string.game_checkbutton_guess)
             setImage(result.image)
             clearFeedback()
             clearGuesses()
             updateTurn()
 
         } else {
+            checkButton.text = getString(R.string.game_checkbutton_next)
             updateScore()
             showFeedback()
         }
@@ -282,6 +289,12 @@ class GameActivity : AppCompatActivity(), GameView {
 
     override fun getContext(): Context {
         return this
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("DEBUG:GameActivity", "onDestroy called — GameActivity is finishing: $isFinishing")
     }
 
 }

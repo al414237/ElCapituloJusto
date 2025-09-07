@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="¿Qué capítulo es?"
+        android:text="@string/game_guess_text"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,15 +23,16 @@
         tools:text="Jugador 1 se ha acercado más: a x capítulos." />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/checkButton"
         android:layout_width="230dp"
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#F44336"
         android:onClick="onNextPressed"
-        android:text="COMPROBAR"
+        android:text="@string/game_checkbutton_guess"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/checkButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -78,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="start"
-                android:text="Jugador 1"
+                android:text="@string/j1_default"
                 android:textAlignment="center" />
 
             <EditText
@@ -115,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="start"
-                android:text="Jugador 2"
+                android:text="@string/j2_default"
                 android:textAlignment="center" />
 
             <EditText
@@ -151,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Jugador 3"
+                android:text="@string/j3_default"
                 android:textAlignment="center" />
 
             <EditText
@@ -187,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Jugador 4"
+                android:text="@string/j4_default"
                 android:textAlignment="center" />
 
             <EditText

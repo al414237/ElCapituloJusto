@@ -155,11 +155,11 @@ class GameViewModel: ViewModel() {
 
     fun onGameFinished() {
         _finishGame.value = true
-        restart()
+//        restart()
     }
 
     fun restart() {
-        _finishGame.value = false
+//        _finishGame.value = false
         turn = 1
         players.forEach { it.restartGame() }
         panels.clear()
