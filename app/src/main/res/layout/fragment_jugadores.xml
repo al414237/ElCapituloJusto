@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Indica el número de jugadores:" />
+            android:text="@string/jugadores_number_text" />
 
         <SeekBar
             android:id="@+id/seekBarPlayers"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:gravity="center"
-            android:text="Escribe el nombre de los jugadores:"
+            android:text="@string/jugadores_name_text"
             app:layout_constraintTop_toBottomOf="@+id/seekBarPlayers"
             tools:layout_editor_absoluteX="0dp" />
 
@@ -49,7 +49,7 @@
             android:ems="10"
             android:inputType="text"
             android:maxLength="16"
-            android:text="Jugador 1"
+            android:text="@string/j1_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -61,7 +61,7 @@
             android:ems="10"
             android:inputType="text"
             android:maxLength="16"
-            android:text="Jugador 2"
+            android:text="@string/j2_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textJ1" />
@@ -73,7 +73,7 @@
             android:ems="10"
             android:inputType="text"
             android:maxLength="16"
-            android:text="Jugador 3"
+            android:text="@string/j3_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textJ2" />
@@ -85,7 +85,7 @@
             android:ems="10"
             android:inputType="text"
             android:maxLength="16"
-            android:text="Jugador 4"
+            android:text="@string/j4_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textJ3" />

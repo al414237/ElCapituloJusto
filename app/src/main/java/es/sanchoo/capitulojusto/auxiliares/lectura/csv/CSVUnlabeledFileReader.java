@@ -1,21 +1,36 @@
 package es.sanchoo.capitulojusto.auxiliares.lectura.csv;
 
+import es.sanchoo.capitulojusto.R;
 import es.sanchoo.capitulojusto.auxiliares.lectura.Table;
 
+import android.content.Context;
+import android.util.Log;
+
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class CSVUnlabeledFileReader extends ReaderTemplate{
-    protected String lastLine;
+public class CSVUnlabeledFileReader extends ReaderTemplate {
+    private Context context;
+    private InputStream inputStream;
+    private String lastLine;
+
+    public CSVUnlabeledFileReader(Context context) {
+        this.context = context;
+    }
 
     @Override
-    public void openSource(String source) {
-        try{
-            fichero = new BufferedReader(new FileReader(source));
-        } catch (Exception e){
-            e.printStackTrace();
+    public void openSource() {
+        try {
+//            int resourceId = context.getResources().getIdentifier(source, "raw", context.getPackageName());
+//            inputStream = context.getResources().openRawResource(resourceId);
+            inputStream = context.getResources().openRawResource(R.raw.solution);
+            fichero = new BufferedReader(new InputStreamReader(inputStream));
+        } catch (Exception e) {
+            Log.e("Resource Error", "Recurso no encontrado: ");
         }
     }
 
@@ -27,7 +42,7 @@ public class CSVUnlabeledFileReader extends ReaderTemplate{
     @Override
     public void processData(String data) {
         List<Integer> datos = new ArrayList<>();
-        for (String dato: dividir(data)) {
+        for (String dato : dividir(data)) {
             datos.add(Integer.parseInt(dato));
         }
         table.addRow(datos);
@@ -35,10 +50,15 @@ public class CSVUnlabeledFileReader extends ReaderTemplate{
 
     @Override
     public void closeSource() {
-        try{
-            fichero.close();
-        } catch (Exception e){
-            e.printStackTrace();
+        try {
+            if (fichero != null) {
+                fichero.close();
+            }
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        } catch (Exception e) {
+            Log.e("Resource Error", "El archivo no se ha podido cerrar correctamente");
         }
     }
 
@@ -49,18 +69,17 @@ public class CSVUnlabeledFileReader extends ReaderTemplate{
 
     @Override
     public String getNextData() {
-        try{
+        try {
             lastLine = fichero.readLine();
             return lastLine;
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception e) {
+            Log.e("Resource Error", "No se ha podido leer la siguiente línea");
             return null;
         }
-
     }
 
-    protected List<String> dividir(String linea){
-        if (linea!=null) return List.of(linea.split(","));
+    protected List<String> dividir(String linea) {
+        if (linea != null) return Arrays.asList(linea.split(","));
         return null;
     }
 }

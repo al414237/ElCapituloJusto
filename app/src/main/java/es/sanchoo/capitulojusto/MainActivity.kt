@@ -1,5 +1,6 @@
 package es.sanchoo.capitulojusto
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo.*
 import android.os.Bundle
@@ -11,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import es.sanchoo.capitulojusto.menu.GameSettings
 import es.sanchoo.capitulojusto.menu.VPAdapter
 import es.sanchoo.capitulojusto.menu.ajustesFragment
 import es.sanchoo.capitulojusto.menu.jugadoresFragment
@@ -18,11 +20,14 @@ import es.sanchoo.capitulojusto.menu.reglasFragment
 import es.sanchoo.capitulojusto.views.MenuView
 
 class MainActivity : AppCompatActivity(), MenuView {
+    lateinit var vpAdapter: VPAdapter
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -32,9 +37,9 @@ class MainActivity : AppCompatActivity(), MenuView {
         requestedOrientation = SCREEN_ORIENTATION_PORTRAIT
 
         // MENÚS
-        val tabLayout: TabLayout = findViewById(R.id.tabLayout)
         val viewPager: ViewPager2 = findViewById(R.id.viewpager)
-        val vpAdapter = VPAdapter(this)
+        vpAdapter = VPAdapter(this)
+        val tabLayout: TabLayout = findViewById(R.id.tabLayout)
 
         vpAdapter.addFragment(jugadoresFragment(), "Jugadores")
         vpAdapter.addFragment(reglasFragment(), "Cómo jugar")
@@ -47,13 +52,26 @@ class MainActivity : AppCompatActivity(), MenuView {
 
 
         // COMENZAR A JUGAR
-        val button: Button = findViewById(R.id.startButton)
-        button.setOnClickListener {
-            val intent: Intent = Intent(this, GameActivity:: class.java)
-            startActivity(intent)
+        val buttonStartGame: Button = findViewById(R.id.startButton)
+        buttonStartGame.setOnClickListener {
+            val playerFragment = vpAdapter.getFragment(0) as? jugadoresFragment // antes estaba como as?
+            val customFragment = vpAdapter.getFragment(2) as? ajustesFragment
+
+            if (playerFragment != null && customFragment != null) {
+                GameSettings.players_names[0] = playerFragment.getPlayerName(1)
+                GameSettings.players_names[1] = playerFragment.getPlayerName(2)
+                GameSettings.players_names[2] = playerFragment.getPlayerName(3)
+                GameSettings.players_names[3] = playerFragment.getPlayerName(4)
+                GameSettings.n_players = playerFragment.getNumberOfPlayers()
+                GameSettings.max_cap = customFragment.getMaximumOfChapters()
+                GameSettings.dificultad[0] = customFragment.getEasyValue()
+                GameSettings.dificultad[1] = customFragment.getMediumValue()
+                GameSettings.dificultad[2] = customFragment.getHardValue()
+
+                val intent = Intent(this, GameActivity::class.java)
+                startActivity(intent) //TODO:  FALLA AL EJECUTARLO DESPUÉS DE LLEGAR A END ACTIVITY
+            }
         }
 
     }
-
-
 }

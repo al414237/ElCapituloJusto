@@ -20,7 +20,6 @@ public class VPAdapter extends FragmentStateAdapter {
     public void addFragment(Fragment fragment, String title) {
         fragmentArrayList.add(fragment);
         fragmentTitle.add(title);
-
     }
 
     @NonNull
@@ -36,5 +35,16 @@ public class VPAdapter extends FragmentStateAdapter {
 
     public String getTitle(int position){
         return fragmentTitle.get(position);
+        
+
     }
+
+    public Fragment getFragment(int position) {
+        if (position >= 0 && position < fragmentArrayList.size()) {
+            return fragmentArrayList.get(position);
+        } else {
+            return null;
+        }
+    }
+
 }

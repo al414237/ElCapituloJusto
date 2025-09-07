@@ -1,5 +1,58 @@
 <resources>
-    <string name="app_name">Capítulo Justo</string>
-    <string name="portraitText">Portrait</string>
-    <string name="landscapeText">Landscape</string>>
+    <string name="app_name" translatable="false">Capítulo Justo</string>
+<!--    <string name="portraitText">Portrait</string>-->
+<!--    <string name="landscapeText">Landscape</string>-->
+    <string name="reglas_title">Reglas</string>
+    <string name="reglas">Aquí vienen las reglas</string>
+<!--    TODO: ESCRIBIR LAS REGLAS-->
+
+    <!--    MainActivity  -->
+    <string name="jugadores_title">Jugadores</string>
+    <string name="jugadores_number_text">Indica el número de jugadores:</string>
+    <string name="jugadores_name_text">Escribe el nombre de los jugadores:</string>
+    <string name="j1_default">Jugador 1</string>
+    <string name="j2_default">Jugador 2</string>
+    <string name="j3_default">Jugador 3</string>
+    <string name="j4_default">Jugador 4</string>
+
+    <string name="ajustes_title">Ajustes</string>
+    <string name="ajustes_subtitle">Filtra las viñetas que te saldrán.</string>
+    <string name="ajustes_max_cap_text">Has visto del capítulo 1 al…</string>
+    <string name="ajustes_max_cap_default">1000</string>
+    <string name="ajustes_difficult_text">Indica la dificultad de las viñetas:</string>
+    <string name="ajustes_difficult_easy">Fácil</string>
+    <string name="ajustes_difficult_medium">Medio</string>
+    <string name="ajustes_difficult_hard">Difícil</string>
+
+
+    <!--    GameActivity  -->
+    <string name="game_correct_answer">¡La viñeta es del capitulo %1$d!</string>
+    <string name="game_guess_answer">¡Intenta adivinar el capítulo justo!</string>
+    <string name="game_vinyeta">Viñeta %1$d/%2$d</string>
+
+
+    <!--    EndActivity  -->
+    <string name="end_title">"¡Se acabó!</string>
+<!--    <string name="restartButton">"Volver a jugar</string>-->
+    <string name="restartButton">"Cerrar juego</string>
+
+    <string name="end_results_title">"Resultados</string>
+
+    <string name="end_register_title">"Registro</string>
+    <string name="end_register_player_scored">%1$s puntuó %2$d</string>
+    <string name="end_register_turn">Turno %1$d</string>
+
+    <string name="end_highscore_title">"Histórico</string>
+
+
+
+    <!--    Alertas  -->
+    <string name="alert_not_panels_title">"No hay suficientes paneles</string>
+    <string name="alert_not_panels_message">"que cumplan las condiciones. Vuelve a Ajustes y cámbialos.</string>
+    <string name="alert_not_panels_accept">"Aceptar y cerrar</string>
+    <string name="alert_close_title">"¿Salir del juego?</string>
+    <string name="alert_close_message">"Perderás todo el progreso</string>
+    <string name="alert_close_accept">"Sí</string>
+    <string name="alert_close_dismiss">"Cancelar</string>
+
 </resources>

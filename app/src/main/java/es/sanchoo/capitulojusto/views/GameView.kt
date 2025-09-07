@@ -1,7 +1,20 @@
 package es.sanchoo.capitulojusto.views
 
-interface GameView {
-    //interfaz deonde declaramos las funciones que corresponden a la vista
+import android.content.Context
 
-    //abstract fun updateScreen(Screen: String)
+interface GameView {    //interfaz deonde declaramos las funciones que corresponden a la vista
+
+    abstract fun getContext(): Context
+
+    // VISTA: actualizar puntuación
+    // VISTA: indicar respuesta correcta
+    // VISTA: añadir feedback
+    // VISTA: borrar feedback
+    // VISTA: limpiar capítulos que estaban
+    // VISTA: cambiar viñeta / 10
+
+    // ADD: abrir pestaña final
+    // ADD: te has quedado sin paneles
+
+
 }

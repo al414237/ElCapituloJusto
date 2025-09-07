@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -36,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.fragment:fragment-ktx:1.8.4")
     implementation("androidx.activity:activity-ktx:1.9.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
