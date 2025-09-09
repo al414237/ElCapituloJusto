@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import es.sanchoo.capitulojusto.auxiliares.HighScoreManager
 import es.sanchoo.capitulojusto.auxiliares.Player
 import es.sanchoo.capitulojusto.menu.VPAdapter
 import es.sanchoo.capitulojusto.results.highscoreFragment
@@ -49,8 +50,11 @@ class EndActivity : AppCompatActivity() {
 
         val results = intent.getParcelableArrayListExtra<Player>("rankedPlayers")
         val players = intent.getParcelableArrayListExtra<Player>("players")
-        val max_cap = intent.getIntExtra("MAX_CAP", 100)
         val panels = intent.getStringArrayListExtra("panels")
+        val max_cap = intent.getIntExtra("max_cap", 1000)
+        val easy = intent.getBooleanExtra("easy", true)
+        val medium = intent.getBooleanExtra("medium", true)
+        val hard = intent.getBooleanExtra("hard", true)
 
 
         // MENÚS
@@ -70,19 +74,21 @@ class EndActivity : AppCompatActivity() {
             arguments = Bundle().apply {
                 putParcelableArrayList("players", players)
                 putStringArrayList("panels", panels)
-                putInt("MAX_CAP", max_cap)
+                putInt("max_cap", max_cap)
             }
         }
         vpAdapter.addFragment(registerFragment, getString(R.string.end_register_title))
 
-//        val highscoreFragment = highscoreFragment().apply {
-//            arguments = Bundle().apply {
-//                putParcelableArrayList("players", players)
-//            }
-//        }
-        vpAdapter.addFragment(highscoreFragment(), getString(R.string.end_highscore_title)) // TODO
-        viewPager.setAdapter(vpAdapter)
+        HighScoreManager(this).updateHighScore(players, max_cap, easy, medium, hard)
 
+        val highscoreFragment = highscoreFragment().apply {
+            arguments = Bundle().apply {
+                putParcelableArrayList("players", players)
+            }
+        }
+        vpAdapter.addFragment(highscoreFragment, getString(R.string.end_highscore_title))
+
+        viewPager.setAdapter(vpAdapter)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = vpAdapter.getTitle(position)
         }.attach()

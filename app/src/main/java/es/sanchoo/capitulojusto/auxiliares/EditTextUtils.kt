@@ -4,8 +4,8 @@ import android.text.InputFilter
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import es.sanchoo.capitulojusto.Constants.MAX_CAP_DEFAULT
 
-private const val MAX_CAP: Int = 1000
 private const val MIN_CAP: Int = 10
 
 //
@@ -24,11 +24,11 @@ fun applyValueFilter(editText: EditText, isGameplay: Boolean = false) {
         if (!newText.all { it.isDigit() }) return@InputFilter ""
 
         val value = newText.toIntOrNull() ?: return@InputFilter ""
-        if (value > MAX_CAP) "" else null
+        if (value > MAX_CAP_DEFAULT) "" else null
     }
 
     // Limitar dígitos a los del MAX para evitar desbordes innecesarios (1000 -> 4)
-    val lengthFilter = InputFilter.LengthFilter(MAX_CAP.toString().length)
+    val lengthFilter = InputFilter.LengthFilter(MAX_CAP_DEFAULT.toString().length)
     editText.filters = arrayOf(maxFilter, lengthFilter)
 
     // 2) Al finalizar (perder foco o IME Done), ajustar al rango [MIN_CAP, MAX_CAP]
@@ -36,12 +36,12 @@ fun applyValueFilter(editText: EditText, isGameplay: Boolean = false) {
         val txt = editText.text?.toString().orEmpty()
         val fixedText = when {
             txt.isBlank() && isGameplay -> txt // en gameplay, si está vacío, no tocar
-            txt.isBlank() -> MAX_CAP.toString() // fuera de gameplay, vacío → MAX_CAP
+            txt.isBlank() -> MAX_CAP_DEFAULT.toString() // fuera de gameplay, vacío → MAX_CAP
             else -> {
                 val n = txt.toIntOrNull()
-                if (n == null) MAX_CAP.toString()
-                else if (isGameplay) minOf(n, MAX_CAP).toString() // gameplay: solo limitar max
-                else n.coerceIn(MIN_CAP, MAX_CAP).toString()      // fuera gameplay: rango completo
+                if (n == null) MAX_CAP_DEFAULT.toString()
+                else if (isGameplay) minOf(n, MAX_CAP_DEFAULT).toString() // gameplay: solo limitar max
+                else n.coerceIn(MIN_CAP, MAX_CAP_DEFAULT).toString()      // fuera gameplay: rango completo
             }
         }
         if (fixedText != txt) {

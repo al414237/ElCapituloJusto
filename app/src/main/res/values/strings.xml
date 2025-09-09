@@ -3,8 +3,24 @@
 <!--    <string name="portraitText">Portrait</string>-->
 <!--    <string name="landscapeText">Landscape</string>-->
     <string name="reglas_title">Reglas</string>
-    <string name="reglas">Aquí vienen las reglas</string>
-<!--    TODO: ESCRIBIR LAS REGLAS-->
+    <string name="reglas_titulo"><b><font color='#F44336'>Reglas del Juego</font></b></string>
+
+    <string name="reglas_parrafo1">
+        Aparecerán viñetas de <b><font color='#F44336'>ONE PIECE</font></b>.
+        Tu objetivo es <b>adivinar el capítulo exacto</b> de cada viñeta.
+    </string>
+
+    <string name="reglas_parrafo2">
+Por cada capítulo que te alejes se suma <b>1 punto</b>; y si aciertas <b><font color='#F44336'>se restan 10 puntos</font></b>. Gana quien después de 10 turnos tenga menor puntuación.
+    </string>
+
+    <string name="reglas_parrafo4">
+Puedes ajustar la dificultad en <b>Ajustes</b>, pero si has mantenido la configuración original, tu resultado podrá entrar en el <b><font color='#F44336'>highscore</font></b>, donde podrás comparar tu reciente puntuación con tus mejores partidas.
+    </string>
+
+    <string name="reglas_parrafo5">
+Minimiza tu puntuación, acierta lo más cerca posible del capítulo correcto y <b>compite para ser el mejor</b>.
+    </string>
 
     <!--    MainActivity  -->
     <string name="jugadores_title">Jugadores</string>

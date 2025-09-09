@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import es.sanchoo.capitulojusto.Constants.MAX_CAP_DEFAULT
 import es.sanchoo.capitulojusto.auxiliares.Panel
 import es.sanchoo.capitulojusto.auxiliares.Player
 import es.sanchoo.capitulojusto.auxiliares.lectura.Table
@@ -31,7 +32,7 @@ class GameViewModel: ViewModel() {
 
 
     private var conditionsSet: MutableSet<Int> = mutableSetOf()
-    private var limitChapter: Int = 1000 // luego se cambia
+    private var limitChapter: Int = MAX_CAP_DEFAULT
 
     private var state : State = State.GUESSING
 

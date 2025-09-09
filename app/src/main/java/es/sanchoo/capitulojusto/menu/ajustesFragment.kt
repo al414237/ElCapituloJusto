@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.EditText
+import es.sanchoo.capitulojusto.Constants
 import es.sanchoo.capitulojusto.R
 import es.sanchoo.capitulojusto.auxiliares.applyValueFilter
 
@@ -38,6 +39,7 @@ class ajustesFragment : Fragment() {
 
         //LÍMITE DE CAPÍTULOS
         editTextChapter = view.findViewById(R.id.textChapter)
+        editTextChapter.setText(Constants.MAX_CAP_DEFAULT.toString())
         applyValueFilter(editTextChapter)
 
         //CHECKBOXES DE DIFICULTAD

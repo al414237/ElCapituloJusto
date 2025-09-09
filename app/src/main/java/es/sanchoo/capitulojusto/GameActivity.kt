@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -32,7 +31,6 @@ class GameActivity : AppCompatActivity(), GameView {
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("DEBUG:GameActivity", "New GameActivity created")
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_game)
@@ -123,6 +121,10 @@ class GameActivity : AppCompatActivity(), GameView {
                     "panels",
                     ArrayList<String>(viewModel.getImgsFromPanels())
                 )
+                intent.putExtra("max_cap", GameSettings.max_cap)
+                intent.putExtra("easy", GameSettings.dificultad[0])
+                intent.putExtra("medium", GameSettings.dificultad[1])
+                intent.putExtra("hard", GameSettings.dificultad[2])
                 startActivity(intent)
                 finish()
             }
@@ -294,7 +296,6 @@ class GameActivity : AppCompatActivity(), GameView {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("DEBUG:GameActivity", "onDestroy called — GameActivity is finishing: $isFinishing")
     }
 
 }
